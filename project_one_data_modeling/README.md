@@ -36,4 +36,32 @@ The following is an example of the log data.
 The database model for this progect is a denormalized start schema and the entity Relationship Diagram is as follows.
 ![My Image](pictures/sparkifyDB.png)
 
-##
+## ELT Pipeline
+Extract, transform, load (ETL) is the general procedure of copying data from one or more sources into a destination system which represents the data differently from, or in a different context than, the sources.
+
+### Extracting, Transforming, and Loading the Data
+
+The ETL pipeline extracts two types of JSON data files from files in two directories:
+
+- /data/log_data 
+- /data/song_data
+
+Data is extracted from the JSON files and transformed into the appro
+
+
+This is handled by four files using Python and SQL:
+
+- The relations for the  Sparkify database are created by running `create_tables.py`.
+- Data is extracted, transformed and loaded into the database using `etl.py`.
+- All SQL queries for called in the aformentioned scripts are located in `sql_queries.py`
+- The relations from the database are checked using `test.ipynb` to confirm the data was correctly transformed and loaded into the database and the appropriate data types were used.
+
+
+Running the the ELT pipline:
+- Open a terminal and run \<python create_tables.py\>
+    - All relations will be created for the database
+- Run \<python etl.py\>
+    - Data will be extracted from the JSON files and transformed and loaded into the Sparkify database.
+- Run all cells in `test.ipynb` 
+    - Confirms that the relations were properly created and the data was loaded successfully.
+  
