@@ -7,6 +7,17 @@ import datetime
 
 
 def process_song_file(cur, filepath):
+    """
+    Performs ETL on song_data, creating songs and artists 
+    dimentional relations:
+    - Extracts data from JSON files into a dataframe
+    - Creates song_data / artist_data with relavent values
+    - Inserts data into Postgres tables by calling queries
+      from sql_queries.py
+    Parameters:
+    - cur: cursor object that allows Python to execute PostgreSQL commands in a database session
+    - filepath: path to the JSON file containing song_data
+    """
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -20,6 +31,18 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """
+    Performs ETL on log_data, creating users and time 
+    dimentional relations and songplayed fact relation:
+    - Extracts data from JSON files into a dataframe
+    - Creates data frames for each table with relavent values
+    - Inserts data into Postgres tables by calling queries
+      from sql_queries.py
+      
+    Parameters:
+    - cur: cursor object that allows Python to execute PostgreSQL commands in a database session
+    - filepath: path to the JSON file containing log_data
+    """
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -62,6 +85,17 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """
+    Processes all files contained within the defined filepath
+    - Walks through all JSON files in specified filepath
+    - Calls defined processing function on each JSON file
+    
+    Parameters:
+    - cur: cursor object that allows Python to execute PostgreSQL commands in a database session
+    - conn: connection created to the database
+    - filepath: path to the JSON file containing the data specified (song_data or log_data)
+    - func: processing function (process_song_file or process_log_file)
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -81,6 +115,14 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """
+    Builds ETL pipeline for Sparkify Postgres database
+    
+    Connects to the Sparkify Postgres database and 
+    populates the songs, artists, useres, time, and
+    songplayed relations with data contained in JSON
+    files located in the defined filepath.
+    """
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 
