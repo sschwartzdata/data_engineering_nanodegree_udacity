@@ -12,25 +12,24 @@ In this project, I applied what I have learned on data warehouses and AWS to bui
 
 
 ## Database Schema
-The ERD for the staging tables are as follows:
+The ERD for the staging tables are as follows: </br>
 ![My Image](images/erd_staging.png)
 
-The database model for the Redshift database is a denormalized star schema and the entity Relationship Diagram is as follows:
+The database model for the Redshift database is a denormalized star schema and the entity Relationship Diagram is as follows:</br>
 ![My Image](images/sparkifyDB.png)
 
 ## Data
 For this project there are two types of JSON data files that were used. The first is the song data set contains metadata about a song and the artist of that song.
 The second is the the log data set that contains simulated activity logs from a music streaming app based on specified configurations.
 
-The following is an example of the song data.
+The following is an example of the song data.</br>
 
 ![My Image](images/song_data_head.png)
 
 
-The following is an example of the log data.
+The following is an example of the log data.</br>
 
 ![My Image](images/log_data_head.png)
-
 
 ## ETL
 The ETL pipeline executes the following steps:
