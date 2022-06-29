@@ -22,8 +22,6 @@ The following is an example of the log data.</br>
 
 ![My Image](images/log_data_head.png)
 ## Database Schema
-The ERD for the staging tables are as follows: </br>
-![My Image](images/erd_staging.png)
 
 The database model for the Redshift database is a denormalized star schema and the entity Relationship Diagram is as follows:</br>
 ![My Image](images/sparkifyDB.png)
